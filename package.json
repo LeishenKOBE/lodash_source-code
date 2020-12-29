@@ -1,0 +1,24 @@
+{
+  "name": "lodash_source-code",
+  "version": "1.0.0",
+  "main": "./dist/index.js",
+  "repository": "https://github.com/LeishenKOBE/lodash_source-code.git",
+  "author": "LeishenKOBE <wuyujiesong@outlook.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "rollup -c"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.12.10",
+    "@babel/preset-env": "^7.12.11",
+    "@rollup/plugin-babel": "^5.2.2",
+    "babel-core": "^6.26.3",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-preset-latest": "^6.24.1",
+    "rollup": "^2.35.1",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-json": "^4.0.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-terser": "^7.0.2"
+  }
+}
