@@ -1,13 +1,7 @@
-/*
- * @Author: shdongzhao
- * @Date: 2020-12-29 19:25:35
- * @LastEditors: shidongzhao
- * @LastEditTime: 2020-12-29 19:55:19
- * @Description:
- */
-import slice from './slice';
-import chunk from './chunk';
+import { slice } from "./slice";
+import { chunk } from "./chunk";
+import { compact } from "./compact";
 
-const obj = {slice, chunk};
+const obj = { slice, chunk, compact };
 
 export default obj;

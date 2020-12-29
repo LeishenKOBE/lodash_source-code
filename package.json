@@ -6,7 +6,7 @@
   "author": "LeishenKOBE <wuyujiesong@outlook.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "rollup -c"
+    "dev": "rollup -c -w"
   },
   "devDependencies": {
     "@babel/core": "^7.12.10",

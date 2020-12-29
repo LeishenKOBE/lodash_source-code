@@ -4,50 +4,6 @@
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.shi = factory());
 }(this, (function () { 'use strict';
 
-  /*
-   *                        ::
-   *                       :;J7, :,                        ::;7:
-   *                       ,ivYi, ,                       ;LLLFS:
-   *                       :iv7Yi                       :7ri;j5PL
-   *                      ,:ivYLvr                    ,ivrrirrY2X,
-   *                      :;r@Wwz.7r:                :ivu@kexianli.
-   *                     :iL7::,:::iiirii:ii;::::,,irvF7rvvLujL7ur
-   *                    ri::,:,::i:iiiiiii:i:irrv177JX7rYXqZEkvv17
-   *                 ;i:, , ::::iirrririi:i:::iiir2XXvii;L8OGJr71i
-   *               :,, ,,:   ,::ir@mingyi.irii:i:::j1jri7ZBOS7ivv,
-   *                  ,::,    ::rv77iiiriii:iii:i::,rvLq@huhao.Li
-   *              ,,      ,, ,:ir7ir::,:::i;ir:::i:i::rSGGYri712:
-   *            :::  ,v7r:: ::rrv77:, ,, ,:i7rrii:::::, ir7ri7Lri
-   *           ,     2OBBOi,iiir;r::        ,irriiii::,, ,iv7Luur:
-   *         ,,     i78MBBi,:,:::,:,  :7FSL: ,iriii:::i::,,:rLqXv::
-   *         :      iuMMP: :,:::,:ii;2GY7OBB0viiii:i:iii:i:::iJqL;::
-   *        ,     ::::i   ,,,,, ::LuBBu BBBBBErii:i:i:i:i:i:i:r77ii
-   *       ,       :       , ,,:::rruBZ1MBBqi, :,,,:::,::::::iiriri:
-   *      ,               ,,,,::::i:  @arqiao.       ,:,, ,:::ii;i7:
-   *     :,       rjujLYLi   ,,:::::,:::::::::,,   ,:i,:,,,,,::i:iii
-   *     ::      BBBBBBBBB0,    ,,::: , ,:::::: ,      ,,,, ,,:::::::
-   *     i,  ,  ,8BMMBBBBBBi     ,,:,,     ,,, , ,   , , , :,::ii::i::
-   *     :      iZMOMOMBBM2::::::::::,,,,     ,,,,,,:,,,::::i:irr:i:::,
-   *     i   ,,:;u0MBMOG1L:::i::::::  ,,,::,   ,,, ::::::i:i:iirii:i:i:
-   *     :    ,iuUuuXUkFu7i:iii:i:::, :,:,: ::::::::i:i:::::iirr7iiri::
-   *     :     :rk@Yizero.i:::::, ,:ii:::::::i:::::i::,::::iirrriiiri::,
-   *      :      5BMBBBBBBSr:,::rv2kuii:::iii::,:i:,, , ,,:,:i@petermu.,
-   *           , :r50EZ8MBBBBGOBBBZP7::::i::,:::::,: :,:,::i;rrririiii::
-   *               :jujYY7LS0ujJL7r::,::i::,::::::::::::::iirirrrrrrr:ii:
-   *            ,:  :@kevensun.:,:,,,::::i:i:::::,,::::::iir;ii;7v77;ii;i,
-   *            ,,,     ,,:,::::::i:iiiii:i::::,, ::::iiiir@xingjief.r;7:i,
-   *         , , ,,,:,,::::::::iiiiiiiiii:,:,:::::::::iiir;ri7vL77rrirri::
-   *          :,, , ::::::::i:::i:::i:i::,,,,,:,::i:i:::iir;@Secbone.ii:::
-   */
-
-  /*
-   * @Author: shdongzhao
-   * @Date: 2020-12-29 19:25:45
-   * @LastEditors: shidongzhao
-   * @LastEditTime: 2020-12-29 19:25:45
-   * @Description:
-   */
-
   /**
    * @description:
    * @param {*} array 原数组
@@ -87,43 +43,155 @@
     return result;
   };
 
-  /*
-   * @Author: shdongzhao
-   * @Date: 2020-12-29 19:25:35
-   * @LastEditors: shidongzhao
-   * @LastEditTime: 2020-12-29 19:55:19
-   * @Description:
-   */
-  var obj = {
-    slice: slice,
-    chunk: slice
+  var chunk = function chunk(array, size) {
+    size = Math.max(size, 0);
+    var length = array === null ? 0 : array.length;
+
+    if (!length || size < 1) {
+      return [];
+    }
+
+    var index = 0;
+    var resIndex = 0;
+    var result = new Array(Math.ceil(length / size));
+
+    while (index < length) {
+      result[resIndex++] = slice(array, index, index += size);
+    }
+
+    return result;
   };
 
-  /*
-   *
-   *    ┏┓　　　┏┓
-   *  ┏┛┻━━━┛┻┓
-   *  ┃　　　　　　　┃
-   *  ┃　　　━　　　┃
-   *  ┃　＞　　　＜　┃
-   *  ┃　　　　　　　┃
-   *  ┃...　⌒　...　┃
-   *  ┃　　　　　　　┃
-   *  ┗━┓　　　┏━┛
-   *      ┃　　　┃
-   *      ┃　　　┃
-   *      ┃　　　┃
-   *      ┃　　　┃  神兽保佑
-   *      ┃　　　┃  代码无bug
-   *      ┃　　　┃
-   *      ┃　　　┗━━━┓
-   *      ┃　　　　　　　┣┓
-   *      ┃　　　　　　　┏┛
-   *      ┗┓┓┏━┳┓┏┛
-   *        ┃┫┫　┃┫┫
-   *        ┗┻┛　┗┻┛
-   */
+  // 此方法是去除虚假值
+  var compact = function compact(array) {
+    var resIndex = 0;
+    var result = [];
 
-  return obj;
+    if (array === null) {
+      return result;
+    }
+
+    for (var value in array) {
+      if (value) {
+        result[resIndex++] = value;
+      }
+    }
+
+    return result;
+  };
+
+  var obj = {
+    slice: slice,
+    chunk: chunk,
+    compact: compact
+  };
+
+  function _typeof(obj) {
+    "@babel/helpers - typeof";
+
+    if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") {
+      _typeof = function (obj) {
+        return typeof obj;
+      };
+    } else {
+      _typeof = function (obj) {
+        return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
+      };
+    }
+
+    return _typeof(obj);
+  }
+
+  var isObjectLike = function isObjectLike(value) {
+    return _typeof(value) === "object" && value !== null;
+  };
+
+  var objectProto = Object.prototype;
+  var hasOwnProperty = objectProto.hasOwnProperty;
+  var toString = objectProto.toString;
+  var symToStringTag = typeof Symbol !== "undefined" ? Symbol.toStringTag : undefined;
+  var baseGetTag = function baseGetTag(value) {
+    if (value == null) {
+      return value === undefined ? "[object Undefined]" : "[object Null]";
+    }
+
+    if (!(symToStringTag && symToStringTag in Object(value))) {
+      return toString.call(value);
+    }
+
+    var isOwn = hasOwnProperty.call(value, symToStringTag);
+    var tag = value[symToStringTag];
+    var unmasked = false;
+
+    try {
+      value[symToStringTag] = undefined;
+      unmasked = true;
+    } catch (e) {}
+
+    var result = toString.call(value);
+
+    if (unmasked) {
+      if (isOwn) {
+        value[symToStringTag] = tag;
+      } else {
+        delete value[symToStringTag];
+      }
+    }
+
+    return result;
+  };
+
+  var dataViewTag = "[object DataView]";
+  var mapTag = "[object Map]";
+  var objectTag = "[object Object]";
+  var promiseTag = "[object Promise]";
+  var setTag = "[object Set]";
+  var weakMapTag = "[object WeakMap]";
+  var dataViewCtorString = "".concat(DataView);
+  var mapCtorString = "".concat(Map);
+  var promiseCtorString = "".concat(Promise);
+  var setCtorString = "".concat(Set);
+  var weakMapCtorString = "".concat(WeakMap);
+  var getTag = baseGetTag;
+
+  if (DataView && getTag(new DataView(new ArrayBuffer(1))) !== dataViewTag || getTag(new Map()) !== mapTag || getTag(Promise.resolve()) !== promiseTag || getTag(new Set()) !== setTag || getTag(new WeakSet()) !== weakMapTag) {
+    getTag = function getTag(value) {
+      var result = baseGetTag(value);
+      var Ctor = result === objectTag ? value.constructor : undefined;
+      var ctorString = Ctor ? "".concat(Ctor) : "";
+
+      if (ctorString) {
+        switch (ctorString) {
+          case dataViewCtorString:
+            return dataViewTag;
+
+          case mapCtorString:
+            return mapTag;
+
+          case promiseCtorString:
+            return promiseTag;
+
+          case setCtorString:
+            return setTag;
+
+          case weakMapCtorString:
+            return WeakMapTag;
+        }
+      }
+    };
+  }
+
+  var getTag$1 = getTag;
+
+  var common = {
+    isObjectLike: isObjectLike,
+    getTag: getTag$1
+  };
+
+  var obj$1 = {};
+  Object.assign(obj$1, common, obj);
+  console.log(obj$1.getTag({}));
+
+  return obj$1;
 
 })));
